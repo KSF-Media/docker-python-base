@@ -2,8 +2,7 @@ FROM python:3.6-stretch
 
 WORKDIR /app
 EXPOSE 80
-RUN addgroup -S www-data && \
-    adduser -S -g www-data www-data
+RUN adduser www-data www-data
 RUN chown www-data:www-data /app
 
 # Upgrade pip
