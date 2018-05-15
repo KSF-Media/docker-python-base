@@ -1,6 +1,5 @@
 FROM python:3.6-stretch
 
-WORKDIR /app
 EXPOSE 80
 RUN adduser www-data www-data
 RUN chown www-data:www-data /app
@@ -34,6 +33,7 @@ COPY django-requirements.txt /app
 RUN pip install -r flask-requirements.txt
 RUN pip install -r django-requirements.txt
 
+WORKDIR /app
 CMD /usr/local/bin/uwsgi --ini /app/uwsgi.ini \
   --die-on-term \
   --chdir="/app" \
