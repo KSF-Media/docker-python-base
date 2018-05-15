@@ -28,12 +28,12 @@ ENV UWSGI_PY_AUTORELOAD 1
 RUN pip install cython==0.26.1
 
 # Copy requirements to root and install
-COPY flask-requirements.txt /app
-COPY django-requirements.txt /app
+COPY ./flask-requirements.txt /app
+COPY ./django-requirements.txt /app
+WORKDIR /app
 RUN pip install -r flask-requirements.txt
 RUN pip install -r django-requirements.txt
 
-WORKDIR /app
 CMD /usr/local/bin/uwsgi --ini /app/uwsgi.ini \
   --die-on-term \
   --chdir="/app" \
