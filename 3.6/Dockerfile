@@ -2,7 +2,7 @@ FROM python:3.6-stretch
 
 EXPOSE 80
 RUN adduser www-data www-data
-RUN chown www-data:www-data /app
+RUN mkdir /app && chown www-data:www-data /app
 
 # Upgrade pip
 RUN pip install --upgrade pip
