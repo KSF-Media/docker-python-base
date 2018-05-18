@@ -30,24 +30,14 @@ RUN pip install cython==0.26.1
 # Copy requirements to root and install
 COPY ./flask-requirements.txt /app
 COPY ./django-requirements.txt /app
-WORKDIR /app
 RUN pip install -r flask-requirements.txt
 RUN pip install -r django-requirements.txt
 
-CMD /usr/local/bin/uwsgi \
-  --die-on-term \
-  --chdir="/app" \
-  --master \
-  --ignore-sigpipe \
-  --ignore-write-errors \
-  --disable-write-exception \
-  --socket-timeout=30 \
-  --threaded-logger \
-  --log-master \
-  --log-format='{"context": "uwsgi", "severity": "DEBUG", "timestamp": "%(epoch)", "message": "[uWSGI] %(status) [%(msecs)ms] %(method) %(uri) "}' \
-  --offload-threads=4 \
-  --http="0.0.0.0:8000" \
-  --thunder-lock \
-  --uid=www-data \
-  --gid=www-data \
-  --ini /app/uwsgi.ini
+# Copy config files and scripts
+COPY ./before_script.sh /root
+COPY ./entrypoint.sh /root
+COPY ./uwsgi.ini /root
+
+WORKDIR /app
+
+CMD /root/entrypoint.sh
