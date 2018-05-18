@@ -46,7 +46,7 @@ CMD /usr/local/bin/uwsgi \
   --log-master \
   --log-format='{"context": "uwsgi", "severity": "DEBUG", "timestamp": "%(epoch)", "message": "[uWSGI] %(status) [%(msecs)ms] %(method) %(uri) "}' \
   --offload-threads=4 \
-  --http=80 \
+  --http="0.0.0.0:8000" \
   --thunder-lock \
   --uid=www-data \
   --gid=www-data \
