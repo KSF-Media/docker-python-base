@@ -30,6 +30,7 @@ RUN pip install cython==0.26.1
 # Copy requirements to root and install
 COPY ./flask-requirements.txt /app
 COPY ./django-requirements.txt /app
+WORKDIR /app
 RUN pip install -r flask-requirements.txt
 RUN pip install -r django-requirements.txt
 
@@ -37,7 +38,5 @@ RUN pip install -r django-requirements.txt
 COPY ./before_script.sh /root
 COPY ./entrypoint.sh /root
 COPY ./uwsgi.ini /root
-
-WORKDIR /app
 
 CMD /root/entrypoint.sh
