@@ -34,12 +34,10 @@ WORKDIR /app
 RUN pip install -r flask-requirements.txt
 RUN pip install -r django-requirements.txt
 
-CMD /usr/local/bin/uwsgi --ini /app/uwsgi.ini \
+CMD /usr/local/bin/uwsgi \
   --die-on-term \
   --chdir="/app" \
-  --module="%(app)" \
   --master \
-  --callable=app \
   --ignore-sigpipe \
   --ignore-write-errors \
   --disable-write-exception \
@@ -52,3 +50,4 @@ CMD /usr/local/bin/uwsgi --ini /app/uwsgi.ini \
   --thunder-lock \
   --uid=www-data \
   --gid=www-data \
+  --ini /app/uwsgi.ini
