@@ -39,4 +39,7 @@ COPY ./before_script.sh /root
 COPY ./entrypoint.sh /root
 COPY ./uwsgi.ini /root
 
+# Otherwise the python code reloader won't work
+RUN chown -R www-data:www-data /root
+
 CMD /root/entrypoint.sh
