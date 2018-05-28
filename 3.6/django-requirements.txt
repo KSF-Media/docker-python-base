@@ -7,3 +7,4 @@ Pillow==5.1.0
 pytz==2018.4
 psycopg2-binary==2.7.4
 pq==1.5
+google-cloud-storage==1.10.0
